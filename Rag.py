@@ -36,14 +36,14 @@ def query_rag(question):
     #creating retriever from vectorstore
     retriever=vectorstore.as_retriever(search_kwargs={"k":3})
 
-    llm=ChatOllama(model=os.getenv("OLLAMA_MODEL"),base_url=os.getenv("OLLAMA_BASE_URL"),num_gpu=0)
+    llm=ChatOllama(model=os.getenv("OLLAMA_MODEL"),base_url=os.getenv("OLLAMA_BASE_URL"),num_gpu=5,num_ctx=4096)
 
-    system_prompt=("You are an assistant for question-answering only."
-               "Use only the retrieved chunks as context to answer the question,"
-               "If you don't know the answer, say that "
-               "I do not know."
-               "\n\nContext:\n{context}"
-               )
+    system_prompt=(
+        "You are an assistant for question-answering only."
+        "Use only the retrieved chunks as context to answer the question."
+        "If you don't know the answer, say that I do not know."
+        "\n\nContext:\n{context}"
+    )
     prompt=ChatPromptTemplate.from_messages([("system",system_prompt),("human","{input}"),])
     rag_chain=({"context":retriever | format_docs,"input":RunnablePassthrough()}
               |prompt
