@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG-SYSTEM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playwrite+NZ:wght@100..400&display=swap" rel="stylesheet">
+
+    <style>
+        body{
+            background-image:url("/static/bg2.jpg");
+            background-size:cover;
+            background-attachment:fixed;
+            font-family:'Inter',sans-serif;
+            margin:0;
+            padding:0;
+        }
+        header{
+            background-color:white;
+            padding:20px;
+            text-align:center;
+            font-size:28px;
+            font-weight:700;
+            color:white;
+            -webkit-text-stroke:2px #1a6eb5;
+            letter-spacing:6px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.2);
+        }
+        .card{
+            background-color: rgba(255,255,255,0.85);
+            border-radius:12px;
+            padding:30px;
+            margin:30px auto;
+            width:60%;
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+        }
+        input[type="text"]{
+            width:100%;
+            padding:10px;
+            font-size:18px;
+            font-family:'Inter',sans-serif;
+            border: 2px solid #4a9fd4;
+            border-radius:8px;
+            margin-bottom:10px;
+        }
+        button{
+            background-color:#1a6eb5;
+            color:white;
+            border:none;
+            padding:10px 20px;
+            font-size:18px;
+            font-family:'Inter',sans-serif;
+            border-radius:8px;
+            cursor:pointer;
+        }
+        button:hover{
+            background-color:#4a9fd4;
+        }
+        #answerDisplay{
+            font-size:20px;
+            color:black;
+            line-height:1.6;
+            font-family:'Playwrite NZ',cursive;
+        }
+        h2{
+            text-decoration:underline;
+            font-family:'Inter',sans-serif;
+            color:#1a6eb5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        RAG-SYSTEM
+    </header>
+    <div class="card">
+        <h2>Upload PDF</h2>
+        <input type="file" id="pdfFile" accept=".pdf">
+        <button onclick="uploadFile()">Upload</button>
+        <p id="uploadStatus"></p>
+    </div>
+
+    <div class="card">
+        <h2>Ask the Question</h2>
+        <input type="text" id="question" placeholder="Type your question here...">
+        <button onclick="askQuestion()">Ask</button>
+    </div>
+
+    <div class="card">
+        <h2>Answer</h2>
+        <p id="answerDisplay">Your answer will appear here...</p>
+    </div>
+
+    <!--javascript-->
+    <script>
+        async function uploadFile(){
+            const file=document.getElementById("pdfFile").files[0];
+            const formData=new FormData();
+            formData.append("file",file);
+
+            const response=await fetch("/upload",{method:"POST",body:formData});
+
+            const result=await response.json();
+            document.getElementById("uploadStatus").innerText=result.message || result.error;
+        }
+
+        async function askQuestion(){
+            const question=document.getElementById("question").value;
+
+            const btn=document.querySelector("button[onclick='askQuestion()']");
+            btn.disabled=true;
+            btn.style.opacity="0.5";
+            btn.innerText="Thinking...";
+
+            const response=await fetch("/query",{method:"POST",headers:{"Content-Type":"application/json"},
+                           body:JSON.stringify({"question":question})});
+            
+            const result=await response.json();
+            document.getElementById("answerDisplay").innerText=result.answer || result.error;
+
+            btn.disabled=false;
+            btn.style.opacity="1";
+            btn.innerText="Ask";
+        }
+    </script>
+    
+</body>
+</html>
+
+<!--http://127.0.0.1:5000/-->
