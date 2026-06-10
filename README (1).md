@@ -1,6 +1,6 @@
 # 🧠 RAG-SYSTEM — Retrieval-Augmented Generation with Local LLMs
 
-![RAG System Banner](screenshots/bg1.png)
+![RAG System Banner](Screenshots/bg1.png)
 
 > Upload any PDF. Ask anything. Get intelligent, context-aware answers — powered entirely by local AI.
 
@@ -10,11 +10,11 @@
 
 | Upload PDF | Ask & Answer |
 |---|---|
-| ![Upload](screenshots/bg3.png) | ![Answer](screenshots/bg4.png) |
+| ![Upload](Screenshots/bg3.png) | ![Answer](Screenshots/bg4.png) |
 
 > *Full application view running on localhost:5000*
 
-![Full View](screenshots/Screenshot__407_.png)
+![Full View](Screenshots/Screenshot (407).png)
 
 ---
 
@@ -79,11 +79,11 @@ RAG_Project/
 ├── Documents/
 │   └── SNMP (1).pdf          # Sample PDF for testing
 │
-├── screenshots/
+├── Screenshots/
 │   ├── bg1.png               # Banner image
 │   ├── bg3.png               # Upload screenshot
 │   ├── bg4.png               # Answer screenshot
-│   └── Screenshot__407_.png  # Full app view
+│   └── Screenshot (407).png  # Full app view
 │
 ├── static/
 │   └── bg2.jpg               # Background asset for UI
