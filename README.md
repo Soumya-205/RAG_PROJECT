@@ -14,7 +14,7 @@
 
 > *Full application view running on localhost:5000*
 
-![Full View](Screenshots/Screenshot (407).png)
+
 
 ---
 
