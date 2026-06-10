@@ -83,19 +83,19 @@ RAG_Project/
 │   ├── bg1.png               # Banner image
 │   ├── bg3.png               # Upload screenshot
 │   ├── bg4.png               # Answer screenshot
-│   └── Screenshot (407).png  # Full app view
+│   └── Screenshot (407).png  # Full web page view
 │
 ├── static/
 │   └── bg2.jpg               # Background asset for UI
 │
 ├── Templates/
-│   └── index.html            # Frontend UI (Jinja2 template)
+│   └── index.html            # Frontend UI 
 │
 ├── vectorstore/
 │   ├── 8b2713c9-89be-493.../ # ChromaDB collection data
 │   └── chroma.sqlite3        # ChromaDB index (auto-generated)
 │
-├── venv/                     # Virtual environment (not committed)
+├── venv/                     # Virtual environment 
 │
 ├── app.py                    # Flask app — upload & Q&A routes
 ├── rag.py                    # LangChain RAG pipeline logic
