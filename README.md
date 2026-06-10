@@ -49,7 +49,7 @@ You type a question and click Ask
     → ChromaDB searches ALL chunks for the 3 most similar ones
     → A prompt is built: [context chunks] + [your question]
     → Prompt is sent to Llama 3 (running locally via Ollama)
-    → Llama 3 reads, understands, and generates an answer
+    → Llama3 reads, understands, and generates an answer
     → Answer travels back to your browser
     ✅ Displayed beautifully!
 ```
