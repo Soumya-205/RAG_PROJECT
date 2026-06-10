@@ -35,7 +35,7 @@ def upload():
     except Exception as e:
         return jsonify({"error":f"Ingestion failed: {str(e)}"}),500
     
-    return jsonify({"message":"Uploaded Successfully"})
+    return jsonify({"message":"Uploaded Successfully!!!"})
 
 @app.route("/query",methods=["POST"])
 def query():

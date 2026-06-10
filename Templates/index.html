@@ -19,7 +19,7 @@
             background-color:white;
             padding:20px;
             text-align:center;
-            font-size:28px;
+            font-size:52px;
             font-weight:700;
             color:white;
             -webkit-text-stroke:2px #1a6eb5;
@@ -95,13 +95,27 @@
     <script>
         async function uploadFile(){
             const file=document.getElementById("pdfFile").files[0];
+
+            if(!file){
+                alert("please select a file first!");
+                return;
+            }
             const formData=new FormData();
             formData.append("file",file);
+
+            const btn=document.querySelector("button[onclick='uploadFile()']");
+            btn.disabled=true;
+            btn.style.opacity='0.5';
+            btn.innerText='Uploading...';
 
             const response=await fetch("/upload",{method:"POST",body:formData});
 
             const result=await response.json();
             document.getElementById("uploadStatus").innerText=result.message || result.error;
+
+            btn.disabled=false;
+            btn.style.opacity='1';
+            btn.innerText='Upload';
         }
 
         async function askQuestion(){

@@ -36,7 +36,7 @@ def query_rag(question):
     #creating retriever from vectorstore
     retriever=vectorstore.as_retriever(search_kwargs={"k":3})
 
-    llm=ChatOllama(model=os.getenv("OLLAMA_MODEL"),base_url=os.getenv("OLLAMA_BASE_URL"),num_gpu=5,num_ctx=4096)
+    llm=ChatOllama(model=os.getenv("OLLAMA_MODEL"),base_url=os.getenv("OLLAMA_BASE_URL"))
 
     system_prompt=(
         "You are an assistant for question-answering only."
